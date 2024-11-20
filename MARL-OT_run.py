@@ -30,7 +30,6 @@ import io
 import numpy as np
 import itertools
 import torch
-from road_network import Lane
 from fuzzer_set_mapper import FSM_mapper
 import os
 def position_scaler(position, x_min, x_max, y_min, y_max):
@@ -55,8 +54,7 @@ crash = 0
 
 policy =IDMPolicy
 #init agent
-max_x_diff = 140
-max_y_diff = 140
+
 n_agents= 4
 n_actions = 2
 actor_dims = [10, 10, 10, 7]
@@ -112,7 +110,8 @@ for m in range(200):
     env.reset()
     xmin, xmax, ymin, ymax=env.current_map.get_boundary_point()
 
-
+    max_x_diff = xmax - xmin
+    max_y_diff = ymax - ymin
 
 
 
